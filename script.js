@@ -25,6 +25,8 @@ const init = function () {
   score0El.textContent = 0;
   score1El.textContent = 0;
   diceEl.classList.add('hidden');
+  document.getElementById(`name--0`).textContent = 'Player 1';
+  document.getElementById(`name--1`).textContent = 'Player 2';
 };
 
 //Starting conditions
@@ -74,7 +76,7 @@ btnHold.addEventListener('click', function () {
       scores[activePlayer];
 
     //check if player score is 100
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       //if so finish game
       playing = false;
       document
@@ -83,6 +85,10 @@ btnHold.addEventListener('click', function () {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
+
+      document.getElementById(`name--${activePlayer}`).textContent = `Player ${
+        activePlayer + 1
+      } Wins!`;
 
       diceEl.classList.add('hidden');
     } else {
