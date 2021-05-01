@@ -11,6 +11,7 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnHelp = document.querySelector('.btn--help');
 
 let scores, activePlayer, currentScore, playing;
 
@@ -25,6 +26,7 @@ const init = function () {
   score0El.textContent = 0;
   score1El.textContent = 0;
   diceEl.classList.add('hidden');
+  btnHelp.classList.remove('hidden');
   document.getElementById(`name--0`).textContent = 'Player 1';
   document.getElementById(`name--1`).textContent = 'Player 2';
 };
@@ -52,6 +54,7 @@ btnRoll.addEventListener('click', function () {
     //display the dice
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
+    btnHelp.classList.add('hidden');
 
     //check for a rolled 1 if true switch to other player if not add to score
     if (dice !== 1) {
@@ -104,5 +107,42 @@ btnNew.addEventListener('click', function () {
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
   player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
   init();
+});
+
+//messing with a modal
+// Get the modal
+const modal = document.getElementById('myModal');
+const overlay = document.querySelector('.overlay');
+
+// Get the button that opens the modal
+//btnHelp is the button
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName('close')[0];
+
+// When the user clicks on the button, open the modal
+btnHelp.onclick = function () {
+  modal.style.display = 'block';
+  overlay.classList.remove('hidden');
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = 'none';
+  overlay.classList.add('hidden');
+};
+//if the user clicks on the overlay close the modal
+overlay.onclick = function () {
+  modal.style.display = 'none';
+  overlay.classList.add('hidden');
+};
+
+//if the user presses escape key
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    modal.style.display = 'none';
+    overlay.classList.add('hidden');
+  }
 });

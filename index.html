@@ -31,7 +31,23 @@
       <button class="btn btn--new">New game</button>
       <button class="btn btn--roll">Roll dice</button>
       <button class="btn btn--hold">Hold</button>
+      <button class="btn btn--help">?</button>
     </main>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>How to play:</h1>
+        <p>
+          The player rolls the dice. The number on the dice is added to the
+          current score. If the player rolls a 1 the current score goes back to
+          0 and it moves to the other players turn. To save your current score
+          press the hold button. This will add your current score to your total
+          score and move to the next players turn. First player to 100 wins!
+        </p>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
     <script src="script.js"></script>
   </body>
 </html>
